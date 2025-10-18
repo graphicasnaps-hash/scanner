@@ -106,9 +106,9 @@
       const timeoutId = setTimeout(() => controller.abort(), 3000); // 3s timeout for faster response
 
       try {
-        const res = await fetch(`${webAppURL}?code=${encodeURIComponent(code)}`, { signal: controller.signal });
-        clearTimeout(timeoutId);
-        const text = (await res.text()).trim();
+        const res = await fetch(`${webAppURL}?code=${code}`, { mode: 'cors' });
+		    const text = (await res.text()).trim();
+		    console.log("Server Response:", text);
 
         console.log("Server response:", text);
         if (!text) {
